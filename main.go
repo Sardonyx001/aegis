@@ -13,6 +13,7 @@ import (
 	"golang.org/x/crypto/pbkdf2"
 )
 
+// Salt size in bytes.
 const saltSize = 16
 
 func deriveKey(password string, salt []byte) []byte {
