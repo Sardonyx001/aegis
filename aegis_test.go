@@ -1,4 +1,4 @@
-package main
+package aegis
 
 import (
 	"crypto/rand"
