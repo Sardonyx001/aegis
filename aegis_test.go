@@ -46,7 +46,7 @@ func BenchmarkEncrypt(b *testing.B) {
 
 			b.ResetTimer()
 			for i := 0; i < b.N; i++ {
-				if err := encryptFile(tmpFile.Name(), outputFile, password); err != nil {
+				if err := EncryptFile(tmpFile.Name(), outputFile, password); err != nil {
 					b.Fatalf("encryption failed: %v", err)
 				}
 			}
@@ -68,7 +68,7 @@ func BenchmarkDecrypt(b *testing.B) {
 			defer os.Remove(tmpFile.Name())
 
 			encFile := tmpFile.Name() + ".enc"
-			if err := encryptFile(tmpFile.Name(), encFile, password); err != nil {
+			if err := EncryptFile(tmpFile.Name(), encFile, password); err != nil {
 				b.Fatalf("encryption failed: %v", err)
 			}
 			defer os.Remove(encFile)
@@ -78,7 +78,7 @@ func BenchmarkDecrypt(b *testing.B) {
 
 			b.ResetTimer()
 			for i := 0; i < b.N; i++ {
-				if err := decryptFile(encFile, decFile, password); err != nil {
+				if err := DecryptFile(encFile, decFile, password); err != nil {
 					b.Fatalf("decryption failed: %v", err)
 				}
 

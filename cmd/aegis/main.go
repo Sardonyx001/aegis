@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Sardonyx001/aegis"
 	"github.com/spf13/cobra"
 )
 
@@ -28,7 +29,7 @@ If no output file is specified, it will use [input file].enc as the output file.
 		if len(args) == 2 {
 			outputFile = args[1]
 		}
-		err := aegis.encryptFile(inputFile, outputFile, password)
+		err := aegis.EncryptFile(inputFile, outputFile, password)
 		if err != nil {
 			fmt.Printf("Encryption error: %v\n", err)
 			return
@@ -50,7 +51,7 @@ If no output file is specified, it will use [input file].dec as the output file.
 		if len(args) == 2 {
 			outputFile = args[1]
 		}
-		err := decryptFile(inputFile, outputFile, password)
+		err := aegis.DecryptFile(inputFile, outputFile, password)
 		if err != nil {
 			fmt.Printf("Decryption error: %v\n", err)
 			return

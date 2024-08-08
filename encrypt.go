@@ -9,7 +9,7 @@ import (
 	"github.com/minio/sio"
 )
 
-func encryptFile(inputPath, outputPath, password string) error {
+func EncryptFile(inputPath, outputPath, password string) error {
 	inputFile, err := os.Open(inputPath)
 	if err != nil {
 		return fmt.Errorf("error opening input file: %v", err)
@@ -22,12 +22,12 @@ func encryptFile(inputPath, outputPath, password string) error {
 	}
 	defer outputFile.Close()
 
-	salt := make([]byte, saltSize)
+	salt := make([]byte, SALTSIZE)
 	if _, err := io.ReadFull(rand.Reader, salt); err != nil {
 		return fmt.Errorf("error generating salt: %v", err)
 	}
 
-	key := deriveKey(password, salt)
+	key := DeriveKey(password, salt)
 
 	if _, err := outputFile.Write(salt); err != nil {
 		return fmt.Errorf("error writing salt: %v", err)

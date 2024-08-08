@@ -3,7 +3,6 @@ module github.com/Sardonyx001/aegis
 go 1.22.5
 
 require (
-	github.com/matthewhartstonge/argon2 v1.0.0
 	github.com/minio/sio v0.4.0
 	github.com/spf13/cobra v1.8.1
 	github.com/xdg-go/pbkdf2 v1.0.0

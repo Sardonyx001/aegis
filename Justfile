@@ -10,7 +10,7 @@ binary_name := if os_family() == "windows" { "aegis.exe" } else { "aegis" }
 # Build the project
 build:
     mkdir -p {{build_dir}}
-    go build -o {{build_dir}}/{{binary_name}} {{src_dir}}
+    go build -o {{build_dir}}/{{binary_name}} cmd/aegis/main.go
     @echo "Build complete: {{build_dir}}/{{binary_name}}"
 
 # Clean the build directory

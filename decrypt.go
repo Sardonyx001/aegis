@@ -8,7 +8,7 @@ import (
 	"github.com/minio/sio"
 )
 
-func decryptFile(inputPath, outputPath, password string) error {
+func DecryptFile(inputPath, outputPath, password string) error {
 	inputFile, err := os.Open(inputPath)
 	if err != nil {
 		return fmt.Errorf("error opening input file: %v", err)
@@ -21,12 +21,12 @@ func decryptFile(inputPath, outputPath, password string) error {
 	}
 	defer outputFile.Close()
 
-	salt := make([]byte, saltSize)
+	salt := make([]byte, SALTSIZE)
 	if _, err := io.ReadFull(inputFile, salt); err != nil {
 		return fmt.Errorf("error reading salt: %v", err)
 	}
 
-	key := deriveKey(password, salt)
+	key := DeriveKey(password, salt)
 
 	decryptedReader, err := sio.DecryptReader(inputFile, sio.Config{Key: key})
 	if err != nil {
